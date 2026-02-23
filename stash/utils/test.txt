@@ -1,0 +1,20 @@
+One more subtle tip:
+
+If you're building a CLI meant for distribution,
+Poetry is excellent for development.
+But publishing to PyPI is optional early on.
+
+Build → test → polish → then worry about publishing.
+
+You’re currently moving from:
+“code that runs”
+to
+“software that is managed”
+
+That shift is important.
+
+And once you use Poetry a few times,
+you’ll start seeing Python packaging less as chaos
+and more as layered systems with intentional boundaries.
+
+That’s the real lesson here.

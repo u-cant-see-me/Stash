@@ -1,0 +1,11 @@
+
+[project]
+name = "stash"
+version = "0.1.0"
+description = "A CLI tool for uploading and download files to and from stash-it database"
+authors = [{ name = "Yash", email = "raunakyash12@example.com" }]
+readme = "README.md"
+requires-python = ">=3.11"
+
+[project.scripts]
+stash = "stash.main:app"
