@@ -61,7 +61,7 @@ def upload(files:List[str],informative:bool,copyToClipboard:bool):
         return 
 
     BACKEND_URL = "https://stashit-uqpt.onrender.com"
-    serverUrl = f"{url}/api/file/upload"
+    serverUrl = f"{BACKEND_URL}/api/file/upload"
     testfileurl = "cli/utils/img.png"
     print(files)
     metadataList = createMetadataList(files)
