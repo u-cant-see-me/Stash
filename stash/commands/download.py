@@ -1,11 +1,10 @@
-import os
 import requests
 import json
 from rich import print
 from rich.console import Console
 
 def download(stashkey:str):
-    url = os.getenv("BACKEND_URL")
+    BACKEND_URL = "https://stashit-uqpt.onrender.com"
     serverUrl = f"{url}/api/file/download"
     params = { "stashKey":stashkey } 
     print("fetching download urls")
