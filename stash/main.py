@@ -2,7 +2,6 @@ import typer
 from rich import print
 from stash.commands.upload import upload
 from stash.commands.download import download
-import dotenv
 from typing import List
 dotenv.load_dotenv()
 
