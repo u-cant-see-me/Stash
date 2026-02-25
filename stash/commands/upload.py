@@ -61,7 +61,6 @@ def upload(files:List[str],informative:bool,copyToClipboard:bool):
     if not Path(files[0]).is_file():
         print("invalid input ")
         return 
-
     BACKEND_URL = "https://stashit-uqpt.onrender.com"
     serverUrl = f"{BACKEND_URL}/api/file/upload"
     print(files)
