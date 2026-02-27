@@ -11,11 +11,25 @@ Stash allows you to:
 
 ---
 
+## ⚙️ Requirements
+
+- Python 3.11+
+- pipx
+- Internet connection
+
+---
+
 ## 🚀 Installation
 
 ### Recommended: Install with pipx
 
 `pipx` installs CLI tools in isolated environments.
+
+-if pipx is not installed
+
+```bash
+pip install pipx
+```
 
 ```bash
 pipx install stash
@@ -113,13 +127,6 @@ Stash Key: 4fj39sk2
 ```bash
 stash download 4fj39sk2
 ```
-
----
-
-## ⚙️ Requirements
-
-- Python 3.11+
-- Internet connection
 
 ---
 
