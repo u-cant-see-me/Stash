@@ -1,4 +1,5 @@
 import requests
+import typer
 from rich import print
 from rich.console import Console
 from pathlib import Path
@@ -8,9 +9,11 @@ from typing import List
 from nanoid import generate 
 import pyperclip
 import math
-from rich.table import Table
+# from rich.table import Table
+from stash.config import loadConfig
 
 console = Console()
+upload_app = typer.Typer()
 
 def createMetadataList(files):
     metadataList = []
@@ -56,12 +59,18 @@ def displayFiles(files):
         size = f.stat().st_size
         print(f.name ,size,getSize(size))
 
-
-def upload(files:List[str],informative:bool,copyToClipboard:bool):
-    if not Path(files[0]).is_file():
-        print("invalid input ")
-        return 
-    BACKEND_URL = "https://stashit-uqpt.onrender.com"
+# @upload_app.command(name = "upload")
+def upload_logic(files:List[str] ,
+           informative:bool,
+           copyToClipboard:bool ):
+    # if not Path(files[0]).is_file():
+    #     print("invalid input ")
+    #     return 
+    try:
+        config = loadConfig()
+    except:
+        print("[red]failed loading config file")
+    BACKEND_URL = config["BACKEND_URL"]
     serverUrl = f"{BACKEND_URL}/api/file/upload"
     print(files)
     metadataList = createMetadataList(files)

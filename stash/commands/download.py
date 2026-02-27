@@ -1,10 +1,14 @@
+import os
 import requests
 import json
 from rich import print
 from rich.console import Console
+from stash.config import loadConfig
 
-def download(stashkey:str):
-    BACKEND_URL = "https://stashit-uqpt.onrender.com"
+def download_logic(stashkey:str):
+    config = loadConfig()
+    BACKEND_URL = config["BACKEND_URL"]
+    DOWNLOAD_DIR = config["DOWNLOAD_DIR"]
     serverUrl = f"{BACKEND_URL}/api/file/download"
     params = { "stashKey":stashkey } 
     print("fetching download urls")
@@ -21,7 +25,8 @@ def download(stashkey:str):
         print("Downloading ...... ")
 
         for url in downloadUrls:
-            name = url["name"]
+            file_name = url["name"]
+            file_path = os.path.join(DOWNLOAD_DIR,file_name)
             downloadLink = url["downloadUrl"]
             with console.status(" Processing...",spinner="dots") as status:
                 try:
@@ -29,14 +34,14 @@ def download(stashkey:str):
                 except:
                     print("/n [red] failed to process request /n request ended with exception [/red]",e)
             if downloadRes.status_code == 200 :
-                print("-> file :",name)
+                print("-> file :",file_name)
                 with console.status(" Downloading..",spinner="shark") as status:
                     try:
-                        with open(name , "wb" ) as f:
+                        with open(file_path , "wb" ) as f:
                             f.write(downloadRes.content)
                         print("downloaded successfully")
                     except Exception as e:
-                        print(f"[red] failed to download file {name} with exception {e}[/red]")
+                        print(f"[red] failed to download file {file_name} with exception {e}[/red]")
             else:
                 print("failed downloading")
     else:

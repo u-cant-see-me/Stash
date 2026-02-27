@@ -55,3 +55,12 @@ def updateConfig(config_key,config_value):
     except Exception as e:
         print(f"An unexpected error occurred: {e}")
 
+
+
+def config_settings(url:str,store:str):
+        if url :
+            updateConfig("BACKEND_URL",url)
+        elif store:
+            updateConfig("DOWNLOAD_DIR",store)
+        else:
+            print("use url for updating backend url or use store for updating storage location")
