@@ -116,23 +116,15 @@ Stash allows you to configure backend and storage settings.
 ### Set Backend URL
 
 ```bash
-stash config url <backend-url>
+stash config --url <backend-url>
 ```
-
-Alias:
-
-```bash
-stash config u <backend-url>
-```
-
----
 
 ### Set Download Storage Path
 
 Set a default directory where downloaded files will be saved:
 
 ```bash
-stash config store /path/to/download/folder
+stash config --store /path/to/download/folder
 ```
 
 If not set, files will be downloaded to the current working directory.
