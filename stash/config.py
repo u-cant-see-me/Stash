@@ -15,7 +15,6 @@ def ensureConfig():
         if not os.path.exists(file_path):
             with open(file_path,"w") as f:
                 f.write(json.dumps(defaultConfig))
-            print(file_path)
     except FileNotFoundError:
         print(f"Error: File '{file_path}' not found.")
     except PermissionError:
