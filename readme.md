@@ -1,8 +1,8 @@
 # Stash
 
-![License](https://img.shields.io/badge/license-MIT-green)
-![Python](https://img.shields.io/badge/python-3.11+-blue)
-![pipx](https://img.shields.io/badge/pipx-installed-brightgreen)
+![License](https://img.shields.io/badge/license-MIT-green?style=for-the-badge)
+![Python](https://img.shields.io/badge/python-3.11+-blue?style=for-the-badge)
+![pipx](https://img.shields.io/badge/pipx-installed-brightgreen?style=for-the-badge)
 
 A lightweight CLI tool for temporarily uploading files and retrieving them from any device using a generated stash key.
 
