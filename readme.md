@@ -59,6 +59,10 @@ pip install stash
 
 ## 📦 Usage
 
+---
+
+## 📦 Usage
+
 ### Upload Files
 
 Upload one or more files using the full command or its alias:
@@ -73,7 +77,7 @@ stash u file1.txt file2.png
 
 After upload, a stash key will be generated.
 
-You can also use shell features like wildcards or directory globs to upload multiple files at once:
+You can also use normal shell features like wildcards and globbing:
 
 ```bash
 # Upload all files in the current directory
@@ -86,9 +90,67 @@ stash upload my_folder/*
 stash upload *.pdf
 ```
 
-> Tip: Your shell expands these patterns before passing them to `stash`, so the CLI sees a list of actual files.
+> Note: The shell expands `*` and patterns before passing them to `stash`.
 
-After upload, a stash key will be generated.
+---
+
+### Download Files
+
+Download using a stash key:
+
+```bash
+stash download <stash-key>
+```
+
+Aliases:
+
+```bash
+stash d <stash-key>
+stash key <stash-key>
+stash k <stash-key>
+```
+
+If no storage path is configured, files will be downloaded to the current directory.
+
+---
+
+## ⚙️ Configuration
+
+Stash allows you to configure backend and storage settings.
+
+### Set Backend URL
+
+```bash
+stash config url <backend-url>
+```
+
+Alias:
+
+```bash
+stash config u <backend-url>
+```
+
+---
+
+### Set Download Storage Path
+
+Set a default directory where downloaded files will be saved:
+
+```bash
+stash config store /path/to/download/folder
+```
+
+If not set, files will be downloaded to the current working directory.
+
+---
+
+### View Current Configuration
+
+To see the current configuration:
+
+```bash
+stash config --show
+```
 
 ---
 
