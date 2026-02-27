@@ -59,10 +59,6 @@ pip install stash
 
 ## 📦 Usage
 
----
-
-## 📦 Usage
-
 ### Upload Files
 
 Upload one or more files using the full command or its alias:
@@ -105,7 +101,6 @@ stash download <stash-key>
 Aliases:
 
 ```bash
-stash d <stash-key>
 stash key <stash-key>
 stash k <stash-key>
 ```
@@ -168,16 +163,6 @@ stash upload file1.txt -i
 
 ```bash
 stash upload file1.txt -c
-```
-
----
-
-### Download Files
-
-Download using a stash key:
-
-```bash
-stash download <stash-key>
 ```
 
 ---
