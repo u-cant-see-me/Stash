@@ -1,5 +1,9 @@
 # Stash
 
+![License](https://img.shields.io/badge/license-MIT-green)
+![Python](https://img.shields.io/badge/python-3.11+-blue)
+![pipx](https://img.shields.io/badge/pipx-installed-brightgreen)
+
 A lightweight CLI tool for temporarily uploading files and retrieving them from any device using a generated stash key.
 
 Stash allows you to:
@@ -8,6 +12,16 @@ Stash allows you to:
 - Receive a unique stash key
 - Download files from any device using that key
 - Optionally confirm downloads interactively
+
+---
+
+## 🛠 Built With / Dependencies
+
+- [Typer](https://pypi.org/project/typer/) >= 0.24.1
+- [Requests](https://pypi.org/project/requests/) >= 2.32.0
+- [Rich](https://pypi.org/project/rich/) >= 14.0.0
+- [Nanoid](https://pypi.org/project/nanoid/) >= 2.0.0
+- [Pyperclip](https://pypi.org/project/pyperclip/) >= 1.11.0
 
 ---
 
