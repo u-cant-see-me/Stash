@@ -25,14 +25,14 @@ Stash allows you to:
 
 `pipx` installs CLI tools in isolated environments.
 
--if pipx is not installed
+If pipx is not installed
 
 ```bash
 pip install pipx
 ```
 
 ```bash
-pipx install stash
+pipx install git+https://github.com/u-cant-see-me/Stash.git
 pipx ensurepath
 ```
 
@@ -46,6 +46,7 @@ export PATH="$HOME/.local/bin:$PATH"
 
 ---
 
+<!--
 ### Alternative: Install with pip
 
 ```bash
@@ -54,17 +55,38 @@ pip install stash
 
 > Note: Global pip installs are not recommended unless using a virtual environment.
 
----
+--- -->
 
 ## 📦 Usage
 
 ### Upload Files
 
-Upload one or more files:
+Upload one or more files using the full command or its alias:
 
 ```bash
+# Full command
 stash upload file1.txt file2.png
+
+# Alias
+stash u file1.txt file2.png
 ```
+
+After upload, a stash key will be generated.
+
+You can also use shell features like wildcards or directory globs to upload multiple files at once:
+
+```bash
+# Upload all files in the current directory
+stash upload *
+
+# Upload all files in a specific folder
+stash upload my_folder/*
+
+# Upload files matching a pattern
+stash upload *.pdf
+```
+
+> Tip: Your shell expands these patterns before passing them to `stash`, so the CLI sees a list of actual files.
 
 After upload, a stash key will be generated.
 
