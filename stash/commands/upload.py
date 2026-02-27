@@ -59,7 +59,6 @@ def displayFiles(files):
         size = f.stat().st_size
         print(f.name ,size,getSize(size))
 
-# @upload_app.command(name = "upload")
 def upload_logic(files:List[str] ,
            informative:bool,
            copyToClipboard:bool ):
