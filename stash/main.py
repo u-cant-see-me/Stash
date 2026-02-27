@@ -32,6 +32,7 @@ app.command(name="u")(upload)
 app.command(name="config")(config)
 
 """download aliases"""
+app.command(name="download")(download)
 app.command(name="key")(download)
 app.command(name="k")(download)
 
