@@ -70,65 +70,68 @@ def upload_logic(files:List[str] ,
         config = loadConfig()
     except:
         print("[red]failed loading config file")
+
+        
     BACKEND_URL = config["BACKEND_URL"]
     serverUrl = f"{BACKEND_URL}/api/file/upload"
     print(files)
     metadataList = createMetadataList(files)
+    if metadataList:
 
-    filteredMetadata = [f["fileInfo"] for f in metadataList ]
+        filteredMetadata = [f["fileInfo"] for f in metadataList ]
 
-    payload = {
-            "files": filteredMetadata,
-            "expiry": "once"
-            }
-    print("\n[green]-> registering files on database \n")
-    with console.status("Processing..",spinner="dots") as status:
-        response = requests.post(serverUrl,json = payload)
-        res = json.loads(response.text)
-    signedUrls = res["signedUrls"]
-    stashKey = res["stashKey"]
-    try:
-        for url in signedUrls:
-            found = False
-            for metadata in metadataList:
-                if metadata["fileInfo"]["id"]== url["id"]:
-                    data = metadata
-                    found = True
-            if found :
-                # if informative :
-                #     inform = input(f"upload file y/yes ")
-                #     if not (inform == 'y' or inform.lower() == "yes" or inform == " "):
-                #         continue
-                with console.status(f" Processing.. {url["name"]} size : {data["fileInfo"]["formattedSize"]["size"]}",spinner="dots") as status:
-                    with open(data["filePath"], "rb" ) as f:
-                        if f:
-                            response = requests.put(url["uploadUrl"]
-                                                ,data = f,
-                                                headers= {"Content-Type" :
-                                                    "application/octet-stream"
-                                                    }
-                                            )
-                        
-                print(f"[green]-> {url["name"]} sucessfully uploaded")
-
-    except FileNotFoundError:
-        print("error file not found")
-    except Exception as e:
-        print(f"some exception : {e}")
-
-    if copyToClipboard:
+        payload = {
+                "files": filteredMetadata,
+                "expiry": "once"
+                }
+        print("\n[green]-> registering files on database \n")
+        with console.status("Processing..",spinner="dots") as status:
+            response = requests.post(serverUrl,json = payload)
+            res = json.loads(response.text)
+        signedUrls = res["signedUrls"]
+        stashKey = res["stashKey"]
         try:
-            pyperclip.copy(stashKey)
-            print("\n-> copied stash key to clipboard")
-        except:
-            print("[red]failed copying to clipboard")
+            for url in signedUrls:
+                found = False
+                for metadata in metadataList:
+                    if metadata["fileInfo"]["id"]== url["id"]:
+                        data = metadata
+                        found = True
+                if found :
+                    # if informative :
+                    #     inform = input(f"upload file y/yes ")
+                    #     if not (inform == 'y' or inform.lower() == "yes" or inform == " "):
+                    #         continue
+                    with console.status(f" Processing.. {url["name"]} size : {data["fileInfo"]["formattedSize"]["size"]}",spinner="dots") as status:
+                        with open(data["filePath"], "rb" ) as f:
+                            if f:
+                                response = requests.put(url["uploadUrl"]
+                                                    ,data = f,
+                                                    headers= {"Content-Type" :
+                                                        "application/octet-stream"
+                                                        }
+                                                )
+                            
+                    print(f"[green]-> {url["name"]} sucessfully uploaded")
+
+        except FileNotFoundError:
+            print("error file not found")
+        except Exception as e:
+            print(f"some exception : {e}")
+
+        if copyToClipboard:
+            try:
+                pyperclip.copy(stashKey)
+                print("\n-> copied stash key to clipboard")
+            except:
+                print("[red]failed copying to clipboard")
 
 
 
-    print("\n----------------------------------------------------------------------\n")
-    print(f"\t[bold blue] {stashKey}")
-    print("\n----------------------------------------------------------------------\n")
-    
+        print("\n----------------------------------------------------------------------\n")
+        print(f"\t[bold blue] {stashKey}")
+        print("\n----------------------------------------------------------------------\n")
+        
     # table = Table(title="Upload Summary")
     # table.add_column("File", style="cyan")
     # table.add_column("Size", style="magenta")
