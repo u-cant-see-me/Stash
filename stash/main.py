@@ -18,9 +18,10 @@ def upload(
 
 def config(
         url:str=typer.Option(None,"--url"),
-        store:str= typer.Option(None,"--store")
+        store:str= typer.Option(None,"--store"),
+        show:bool= typer.Option(None,"--show")
         ):
-     config_settings(url,store)
+     config_settings(url,store,show)
 
 def download(key:str):
     download_logic(key)

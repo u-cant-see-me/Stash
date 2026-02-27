@@ -28,7 +28,6 @@ def loadConfig():
         ensureConfig()
         with open(file_path , "r") as f:
             data = f.read()
-            print(json.loads(data)["BACKEND_URL"])
             return json.loads(data)
 
     except FileNotFoundError:
@@ -56,10 +55,12 @@ def updateConfig(config_key,config_value):
 
 
 
-def config_settings(url:str,store:str):
+def config_settings(url:str,store:str,show:bool):
         if url :
             updateConfig("BACKEND_URL",url)
         elif store:
             updateConfig("DOWNLOAD_DIR",store)
+        elif show:
+            print(loadConfig())
         else:
             print("use url for updating backend url or use store for updating storage location")
