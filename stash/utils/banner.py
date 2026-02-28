@@ -53,10 +53,9 @@ def banner():
 
     print(bannerList[1])
     text = Text("STASH", style="bold cyan")
-    text.stylize("bold magenta", 0, 2)
     console.print(text)
     console.print("Upload files on temporary storage and download them through key")
     console.print("[red]#[/red]each file size must not exceede [red]50Mb[/red]")
     console.print("\nUse --help to see available commands.\n")
-    console.print(":: [white]stash <file_name/source>[/white] \n")
-    console.print("Use -k or -key to download files \n:: stash [green]-k <stash-key>\n")
+    console.print(":: [white]stash u <file_name/source>[/white] \n")
+    console.print("Use k or key to download files \n:: stash [green]-k <stash-key>\n")
