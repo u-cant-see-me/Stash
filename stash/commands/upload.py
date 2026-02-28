@@ -83,7 +83,7 @@ def upload_logic(files:List[str] ,
                 "files": filteredMetadata,
                 "expiry": "once"
                 }
-        print("\n[green]-> registering files on database \n")
+        print("\n[green]:: registering files on database \n")
         with console.status("Processing..",spinner="dots") as status:
             response = requests.post(serverUrl,json = payload)
             res = json.loads(response.text)
@@ -111,25 +111,30 @@ def upload_logic(files:List[str] ,
                                                         }
                                                 )
                             
-                    print(f"[green]-> {url["name"]} sucessfully uploaded")
+                    print(f"[green]:: {url["name"]} sucessfully uploaded")
+
+            #copy stash key to clipboard
+
+            if copyToClipboard:
+                try:
+                    pyperclip.copy(stashKey)
+                    print("\n:: copied stash key to clipboard")
+                except:
+                    print("[red]failed copying to clipboard")
+
+
+            #print stash key on terminal
+
+            print("\n----------------------------------------------------------------------\n")
+            print(f"\t[bold blue] {stashKey}")
+            print("\n----------------------------------------------------------------------\n")
 
         except FileNotFoundError:
             print("error file not found")
         except Exception as e:
             print(f"some exception : {e}")
 
-        if copyToClipboard:
-            try:
-                pyperclip.copy(stashKey)
-                print("\n-> copied stash key to clipboard")
-            except:
-                print("[red]failed copying to clipboard")
 
-
-
-        print("\n----------------------------------------------------------------------\n")
-        print(f"\t[bold blue] {stashKey}")
-        print("\n----------------------------------------------------------------------\n")
         
     # table = Table(title="Upload Summary")
     # table.add_column("File", style="cyan")
